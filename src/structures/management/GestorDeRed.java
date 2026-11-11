@@ -149,12 +149,15 @@ public class GestorDeRed {
 
 
 
+
     public List<String> obtenerVecinos(String idSensor) {
-        // TODO 7: Implementar la consulta de conexiones.
-        // Debe devolver la lista de sensores conectados al idSensor proporcionado.
-        // Retornar una lista vacía si el sensor no tiene conexiones.
-        return null;
+            // TODO 7: vecinos del sensor; lista vacía si no existe o no tiene conexiones.
+            // Se devuelve una copia para que quien llama no pueda modificar la topología por fuera.
+        return new ArrayList<>(topologiaRed.getOrDefault(idSensor, Collections.emptyList()));
     }
+
+
+
 
     public List<String> detectarEstacionesAisladas() {
         // TODO 9: Implementar la detección de nodos huérfanos.
