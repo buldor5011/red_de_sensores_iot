@@ -33,7 +33,7 @@ public class GestorDeRed {
 
     public GestorDeRed() {
 
-        this.historialEventos = new ArrayList<>();
+        this.historialEventos = new LinkedList<>();
         this.navegadorAlertas = new ArrayDeque<>();
         this.colaMonitoreo = new ArrayDeque<>();
         this.topologiaRed = new HashMap<>();
@@ -50,14 +50,20 @@ public class GestorDeRed {
     }
 
     public List<String> obtenerEventosRecientes(int limite) {
+        if (limite <= 0) return new ArrayList<>();
         if (historialEventos.size() <= limite) return new ArrayList<>(historialEventos);
-        return historialEventos.subList(historialEventos.size() - limite, historialEventos.size());
+        return new ArrayList<>(historialEventos.subList(historialEventos.size() - limite, historialEventos.size()));
     }
 
-    public void limpiarHistorialAntiguo(int mantener) {
-        // TODO 10: Implementar la optimización del historial.
-        // Eliminar los registros más antiguos para mantener solo los últimos 'mantener' eventos.
-    }
+
+
+    public void limpiarHistorialAntiguo(int mantener) {   // Conserva solo los últimos 'mantener' eventos
+        int limite = Math.max(mantener, 0);   // Si 'mantener' es negativo, se usa 0 para evitar un bucle raro
+        while (historialEventos.size() > limite) {   // Mientras haya más eventos de los permitidos...
+            historialEventos.remove(0);   // ...elimina el más antiguo (índice 0, el primero); en LinkedList es O(1)
+        }
+
+
 
     // =========================================================================
     // SECCIÓN 2: NAVEGACIÓN DE ALERTAS
