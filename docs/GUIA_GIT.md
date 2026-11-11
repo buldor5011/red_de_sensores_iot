@@ -1,5 +1,4 @@
-# Guia Git - Puesta en marcha Semana 3 (pero repo creado desde S1)
-
+# Guia Git - Puesta en marcha Semana 3 (pero repo creado desde 
 ## Comandos minimos (Documento Marco 10.8)
 
 ```bash
