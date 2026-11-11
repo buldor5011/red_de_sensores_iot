@@ -74,12 +74,21 @@ public class GestorDeRed {
         alertaActual = alerta;
     }
 
-    public String navegarAlSiguiente() {
-        // TODO 2: Implementar la lógica de desplazamiento hacia adelante.
-        // Debe devolver la siguiente alerta o null si no hay más.
-        // Recuerda actualizar el estado de 'alertaActual'.
-        return null;
-    }
+
+    public String navegarAlSiguiente(){
+
+            // TODO 2: desplazamiento hacia adelante (ciclo).
+            // Invariante: la alerta actual es siempre el ÚLTIMO elemento del Deque
+            // (registrarAlerta() hace addLast y marca esa alerta como actual).
+            // Avanzar = sacar el frente y reinsertarlo al final: la siguiente alerta pasa a ser la actual.
+            if (navegadorAlertas.isEmpty()) return null;
+            String siguiente = navegadorAlertas.pollFirst();
+            navegadorAlertas.addLast(siguiente);
+            alertaActual = siguiente;
+            return alertaActual;
+        }
+
+
 
     public String navegarAlAnterior() {
         // TODO 3: Implementar la lógica de desplazamiento hacia atrás.
