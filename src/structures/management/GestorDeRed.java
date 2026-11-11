@@ -69,7 +69,7 @@ public class GestorDeRed {
     // SECCIÓN 2: NAVEGACIÓN DE ALERTAS
     // =========================================================================
 
-    public void registrarAlerta(String alerta) {
+        public void registrarAlerta(String alerta) {
         navegadorAlertas.addLast(alerta);
         alertaActual = alerta;
     }
@@ -124,7 +124,7 @@ public class GestorDeRed {
         if (sensor == null) return null;
         colaMonitoreo.add(sensor);
         return sensor;
-        }
+    }
 
 
 
@@ -188,8 +188,9 @@ public class GestorDeRed {
     }
 
     public List<LecturaSensor> filtrarAlertasCriticas(double limitePm25) {
-        // TODO EXTRA: Usar Streams para filtrar lecturas con PM2.5 superior al límite.
-        // Debe retornar una lista con las lecturas filtradas.
-        return null;
+            // TODO EXTRA: lecturas del buffer con PM2.5 estrictamente superior al límite (no las consume).
+        return bufferIngesta.stream()
+                .filter(l -> l.getPm25() > limitePm25)
+                .collect(Collectors.toList());
     }
 }
