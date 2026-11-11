@@ -62,6 +62,7 @@ public class GestorDeRed {
         while (historialEventos.size() > limite) {   // Mientras haya más eventos de los permitidos...
             historialEventos.remove(0);   // ...elimina el más antiguo (índice 0, el primero); en LinkedList es O(1)
         }
+    }
 
 
 
@@ -69,11 +70,10 @@ public class GestorDeRed {
     // SECCIÓN 2: NAVEGACIÓN DE ALERTAS
     // =========================================================================
 
-        public void registrarAlerta(String alerta) {
+    public void registrarAlerta(String alerta) {
         navegadorAlertas.addLast(alerta);
         alertaActual = alerta;
     }
-
 
     public String navegarAlSiguiente() {
 
