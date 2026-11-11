@@ -75,7 +75,7 @@ public class GestorDeRed {
     }
 
 
-    public String navegarAlSiguiente(){
+    public String navegarAlSiguiente() {
 
             // TODO 2: desplazamiento hacia adelante (ciclo).
             // Invariante: la alerta actual es siempre el ÚLTIMO elemento del Deque
@@ -86,15 +86,19 @@ public class GestorDeRed {
             navegadorAlertas.addLast(siguiente);
             alertaActual = siguiente;
             return alertaActual;
-        }
-
+    }
 
 
     public String navegarAlAnterior() {
-        // TODO 3: Implementar la lógica de desplazamiento hacia atrás.
-        // Debe devolver la alerta anterior o null si es la primera.
-        // Recuerda actualizar el estado de 'alertaActual'.
-        return null;
+        // TODO 3: desplazamiento hacia atrás (operación inversa del TODO 2).
+        // Retroceder = sacar el último elemento y reinsertarlo al frente:
+        // la alerta que quedaba justo antes de la actual pasa a ser el nuevo último (la actual).
+        if (navegadorAlertas.isEmpty()) return null;
+        String saliente = navegadorAlertas.pollLast();
+        navegadorAlertas.addFirst(saliente);
+        alertaActual = navegadorAlertas.peekLast();
+        return alertaActual;
+
     }
 
     public String getAlertaActual() { return alertaActual; }
