@@ -108,9 +108,12 @@ public class GestorDeRed {
     // =========================================================================
 
     public void programarConsulta(String idSensor) {
-        // TODO 4: Implementar la programación de la consulta.
-        // El sensor debe agregarse a la cola solo si NO está ya programado.
+        // TODO 4: el sensor se agrega a la cola solo si NO está ya programado.
+        if (idSensor != null && !colaMonitoreo.contains(idSensor)) {colaMonitoreo.add(idSensor);
+        }
     }
+
+
 
     public String obtenerSiguienteSensor() {
         // TODO 5: Implementar la rotación del ciclo.
